@@ -8,6 +8,7 @@ import uol.compass.avaliacao.dto.AssociateFormDTO;
 import uol.compass.avaliacao.dto.MessageResponseDTO;
 import uol.compass.avaliacao.entity.Associate;
 import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.exception.ResourceNotFoundException;
 import uol.compass.avaliacao.repository.AssociateRepository;
 
 import java.util.Comparator;
@@ -56,5 +57,13 @@ public class AssociateServiceImpl implements AssociateService {
 
         return associates.stream().map(associate -> modelMapper.map(associate, AssociateDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public AssociateDTO findById(Long id) {
+        Associate associate = this.associateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+
+        return modelMapper.map(associate, AssociateDTO.class);
     }
 }

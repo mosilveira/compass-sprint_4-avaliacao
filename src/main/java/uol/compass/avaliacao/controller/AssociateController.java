@@ -36,4 +36,9 @@ public class AssociateController {
     public List<AssociateDTO> find(@RequestParam(required = false) Position position, @RequestParam(required = false) String sort){
         return this.associateService.find(position, sort);
     }
+
+    @GetMapping("/{id}")
+    public AssociateDTO findById(@PathVariable Long id) {
+        return this.associateService.findById(id);
+    }
 }

@@ -12,4 +12,6 @@ public interface AssociateService {
     MessageResponseDTO create(AssociateFormDTO associateFormDTO);
 
     List<AssociateDTO> find(Position position, String sort);
+
+    AssociateDTO findById(Long id);
 }
