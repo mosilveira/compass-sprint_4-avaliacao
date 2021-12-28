@@ -66,4 +66,27 @@ public class AssociateServiceImpl implements AssociateService {
 
         return modelMapper.map(associate, AssociateDTO.class);
     }
+
+    @Override
+    public MessageResponseDTO update(Long id, AssociateFormDTO associateFormDTO) {
+        this.associateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+
+        Associate associateToUpdate = modelMapper.map(associateFormDTO, Associate.class);
+        associateToUpdate.setId(id);
+
+        this.associateRepository.save(associateToUpdate);
+
+        return MessageResponseDTO.builder()
+                .message("Associate with id " + associateToUpdate.getId() + " updated!")
+                .build();
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.associateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+
+        this.associateRepository.deleteById(id);
+    }
 }

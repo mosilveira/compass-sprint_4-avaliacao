@@ -14,4 +14,8 @@ public interface AssociateService {
     List<AssociateDTO> find(Position position, String sort);
 
     AssociateDTO findById(Long id);
+
+    MessageResponseDTO update(Long id, AssociateFormDTO associateFormDTO);
+
+    void delete(Long id);
 }

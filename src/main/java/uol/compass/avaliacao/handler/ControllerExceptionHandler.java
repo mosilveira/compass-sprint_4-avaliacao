@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import uol.compass.avaliacao.exception.ResourceNotFoundException;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
@@ -18,6 +18,6 @@ public class ControllerExceptionHandler {
         return new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
                 ex.getMessage(),
-                LocalDate.now());
+                LocalDateTime.now());
     }
 }

@@ -2,7 +2,6 @@ package uol.compass.avaliacao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uol.compass.avaliacao.dto.AssociateDTO;
 import uol.compass.avaliacao.dto.AssociateFormDTO;
@@ -40,5 +39,17 @@ public class AssociateController {
     @GetMapping("/{id}")
     public AssociateDTO findById(@PathVariable Long id) {
         return this.associateService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public MessageResponseDTO update(@PathVariable Long id, @RequestBody @Valid AssociateFormDTO associateFormDTO) {
+        return this.associateService.update(id, associateFormDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        this.associateService.delete(id);
     }
 }
