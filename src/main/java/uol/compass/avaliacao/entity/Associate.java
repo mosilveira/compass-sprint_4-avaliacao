@@ -35,7 +35,7 @@ public class Associate {
     @Column(nullable = false)
     private Gender gender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "party_id")
     private Party party;
 }

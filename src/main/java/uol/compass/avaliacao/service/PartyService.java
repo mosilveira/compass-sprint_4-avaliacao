@@ -12,7 +12,7 @@ public interface PartyService {
 
     MessageResponseDTO create(PartyFormDTO partyFormDTO);
 
-    List<AssociateDTO> find(Ideology ideology);
+    List<PartyDTO> find(Ideology ideology);
 
     PartyDTO findById(Long id);
 

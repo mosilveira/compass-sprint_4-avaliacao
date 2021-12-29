@@ -3,8 +3,8 @@ package uol.compass.avaliacao.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.request.AssociateFormDTO;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.entity.Associate;
 import uol.compass.avaliacao.enums.Position;
@@ -35,7 +35,7 @@ public class AssociateServiceImpl implements AssociateService {
         Associate savedAssociate = this.associateRepository.save(associateToSave);
 
         return MessageResponseDTO.builder()
-                .message("Associate with id " + savedAssociate.getId() + " created!")
+                .message(String.format("Associate with id %s created!", savedAssociate.getId()))
                 .build();
     }
 
@@ -79,7 +79,7 @@ public class AssociateServiceImpl implements AssociateService {
         this.associateRepository.save(associateToUpdate);
 
         return MessageResponseDTO.builder()
-                .message("Associate with id " + associateToUpdate.getId() + " updated!")
+                .message(String.format("Associate with id %s updated!", associateToUpdate.getId()))
                 .build();
     }
 
