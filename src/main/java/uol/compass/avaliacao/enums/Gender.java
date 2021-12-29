@@ -1,4 +1,4 @@
-package uol.compass.avaliacao.entity;
+package uol.compass.avaliacao.enums;
 
 public enum Gender {
     MASCULINO,

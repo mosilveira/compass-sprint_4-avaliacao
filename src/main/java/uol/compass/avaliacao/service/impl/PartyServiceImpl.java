@@ -1,10 +1,11 @@
-package uol.compass.avaliacao.service;
+package uol.compass.avaliacao.service.impl;
 
-import uol.compass.avaliacao.dto.AssociateDTO;
-import uol.compass.avaliacao.dto.MessageResponseDTO;
-import uol.compass.avaliacao.dto.PartyDTO;
-import uol.compass.avaliacao.dto.PartyFormDTO;
-import uol.compass.avaliacao.entity.Ideology;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
+import uol.compass.avaliacao.dto.response.MessageResponseDTO;
+import uol.compass.avaliacao.dto.response.PartyDTO;
+import uol.compass.avaliacao.dto.request.PartyFormDTO;
+import uol.compass.avaliacao.enums.Ideology;
+import uol.compass.avaliacao.service.PartyService;
 
 import java.util.List;
 

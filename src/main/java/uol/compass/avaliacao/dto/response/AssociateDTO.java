@@ -1,12 +1,12 @@
-package uol.compass.avaliacao.dto;
+package uol.compass.avaliacao.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uol.compass.avaliacao.entity.Gender;
+import uol.compass.avaliacao.enums.Gender;
 import uol.compass.avaliacao.entity.Party;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.enums.Position;
 
 import java.time.LocalDate;
 

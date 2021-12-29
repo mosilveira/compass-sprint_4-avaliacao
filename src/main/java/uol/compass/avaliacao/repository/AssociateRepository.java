@@ -2,7 +2,7 @@ package uol.compass.avaliacao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import uol.compass.avaliacao.entity.Associate;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.enums.Position;
 
 import java.util.List;
 

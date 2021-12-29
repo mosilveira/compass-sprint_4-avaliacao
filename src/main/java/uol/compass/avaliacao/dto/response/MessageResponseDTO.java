@@ -1,4 +1,4 @@
-package uol.compass.avaliacao.dto;
+package uol.compass.avaliacao.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

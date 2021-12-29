@@ -1,15 +1,16 @@
-package uol.compass.avaliacao.service;
+package uol.compass.avaliacao.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uol.compass.avaliacao.dto.AssociateDTO;
-import uol.compass.avaliacao.dto.AssociateFormDTO;
-import uol.compass.avaliacao.dto.MessageResponseDTO;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
+import uol.compass.avaliacao.dto.request.AssociateFormDTO;
+import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.entity.Associate;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.enums.Position;
 import uol.compass.avaliacao.exception.ResourceNotFoundException;
 import uol.compass.avaliacao.repository.AssociateRepository;
+import uol.compass.avaliacao.service.AssociateService;
 
 import java.util.Comparator;
 import java.util.List;

@@ -1,9 +1,9 @@
 package uol.compass.avaliacao.service;
 
-import uol.compass.avaliacao.dto.AssociateDTO;
-import uol.compass.avaliacao.dto.AssociateFormDTO;
-import uol.compass.avaliacao.dto.MessageResponseDTO;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
+import uol.compass.avaliacao.dto.request.AssociateFormDTO;
+import uol.compass.avaliacao.dto.response.MessageResponseDTO;
+import uol.compass.avaliacao.enums.Position;
 
 import java.util.List;
 

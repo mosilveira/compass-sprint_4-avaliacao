@@ -3,11 +3,11 @@ package uol.compass.avaliacao.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import uol.compass.avaliacao.dto.AssociateDTO;
-import uol.compass.avaliacao.dto.AssociateFormDTO;
-import uol.compass.avaliacao.dto.MessageResponseDTO;
-import uol.compass.avaliacao.entity.Position;
-import uol.compass.avaliacao.service.AssociateServiceImpl;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
+import uol.compass.avaliacao.dto.request.AssociateFormDTO;
+import uol.compass.avaliacao.dto.response.MessageResponseDTO;
+import uol.compass.avaliacao.enums.Position;
+import uol.compass.avaliacao.service.impl.AssociateServiceImpl;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;

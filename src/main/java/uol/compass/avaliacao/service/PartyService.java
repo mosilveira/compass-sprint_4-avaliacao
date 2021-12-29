@@ -1,8 +1,10 @@
 package uol.compass.avaliacao.service;
 
-import uol.compass.avaliacao.dto.*;
-import uol.compass.avaliacao.entity.Ideology;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.dto.request.PartyFormDTO;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
+import uol.compass.avaliacao.dto.response.MessageResponseDTO;
+import uol.compass.avaliacao.dto.response.PartyDTO;
+import uol.compass.avaliacao.enums.Ideology;
 
 import java.util.List;
 

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uol.compass.avaliacao.enums.Gender;
+import uol.compass.avaliacao.enums.Position;
 
 import javax.persistence.*;
 import java.time.LocalDate;

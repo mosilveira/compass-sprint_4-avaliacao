@@ -1,9 +1,9 @@
-package uol.compass.avaliacao.dto;
+package uol.compass.avaliacao.dto.request;
 
 import lombok.Builder;
 import lombok.Data;
-import uol.compass.avaliacao.entity.Gender;
-import uol.compass.avaliacao.entity.Position;
+import uol.compass.avaliacao.enums.Gender;
+import uol.compass.avaliacao.enums.Position;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
