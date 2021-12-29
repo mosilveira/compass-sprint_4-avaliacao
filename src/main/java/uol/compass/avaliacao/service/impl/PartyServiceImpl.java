@@ -1,14 +1,18 @@
 package uol.compass.avaliacao.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uol.compass.avaliacao.dto.request.PartyFormDTO;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.dto.response.PartyDTO;
+import uol.compass.avaliacao.entity.Associate;
 import uol.compass.avaliacao.entity.Party;
 import uol.compass.avaliacao.enums.Ideology;
 import uol.compass.avaliacao.exception.ResourceNotFoundException;
+import uol.compass.avaliacao.repository.AssociateRepository;
 import uol.compass.avaliacao.repository.PartyRepository;
 import uol.compass.avaliacao.service.PartyService;
 
@@ -16,17 +20,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PartyServiceImpl implements PartyService {
 
     private PartyRepository partyRepository;
 
-    private ModelMapper modelMapper;
+    private AssociateRepository associateRepository;
 
-    @Autowired
-    public PartyServiceImpl(PartyRepository partyRepository, ModelMapper modelMapper) {
-        this.partyRepository = partyRepository;
-        this.modelMapper = modelMapper;
-    }
+    private ModelMapper modelMapper;
 
     @Override
     public MessageResponseDTO create(PartyFormDTO partyFormDTO) {
@@ -80,6 +81,19 @@ public class PartyServiceImpl implements PartyService {
         this.partyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
 
+        this.partyRepository.flush();
+
         this.partyRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AssociateDTO> findByParty(Long id) {
+        Party party = this.partyRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+
+        List<Associate> associates = this.associateRepository.findAllByPartyName(party.getName());
+
+        return associates.stream().map(associate -> modelMapper.map(associate, AssociateDTO.class))
+                .collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package uol.compass.avaliacao.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -48,5 +49,13 @@ public class ControllerExceptionHandler {
             dto.add(error);
         });
         return dto;
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ErrorMessage dataIntegrityViolationException(Exception ex, WebRequest request) {
+        return new ErrorMessage(
+                HttpStatus.OK.value(),
+                ex.getMessage(),
+                LocalDateTime.now());
     }
 }

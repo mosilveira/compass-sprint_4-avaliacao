@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-import uol.compass.avaliacao.enums.Gender;
 import uol.compass.avaliacao.entity.Party;
+import uol.compass.avaliacao.enums.Gender;
 import uol.compass.avaliacao.enums.Position;
 
 import java.time.LocalDate;

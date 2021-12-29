@@ -3,13 +3,16 @@ package uol.compass.avaliacao.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uol.compass.avaliacao.dto.request.LinkFormDTO;
 import uol.compass.avaliacao.dto.request.AssociateFormDTO;
 import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.entity.Associate;
+import uol.compass.avaliacao.entity.Party;
 import uol.compass.avaliacao.enums.Position;
 import uol.compass.avaliacao.exception.ResourceNotFoundException;
 import uol.compass.avaliacao.repository.AssociateRepository;
+import uol.compass.avaliacao.repository.PartyRepository;
 import uol.compass.avaliacao.service.AssociateService;
 
 import java.util.Comparator;
@@ -21,11 +24,15 @@ public class AssociateServiceImpl implements AssociateService {
 
     private AssociateRepository associateRepository;
 
+    private PartyRepository partyRepository;
+
     private ModelMapper modelMapper;
 
     @Autowired
-    public AssociateServiceImpl(AssociateRepository associateRepository, ModelMapper modelMapper) {
+    public AssociateServiceImpl(AssociateRepository associateRepository,
+                                PartyRepository partyRepository, ModelMapper modelMapper) {
         this.associateRepository = associateRepository;
+        this.partyRepository = partyRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -89,5 +96,39 @@ public class AssociateServiceImpl implements AssociateService {
                 .orElseThrow(() -> new ResourceNotFoundException(id));
 
         this.associateRepository.deleteById(id);
+    }
+
+    @Override
+    public MessageResponseDTO link(LinkFormDTO linkFormDTO) {
+        Long associateId = linkFormDTO.getIdAssociado();
+        Long partyId = linkFormDTO.getIdPartido();
+
+        Associate associate = this.associateRepository.findById(associateId)
+                .orElseThrow(() -> new ResourceNotFoundException(associateId));
+
+        Party party = this.partyRepository.findById(partyId)
+                .orElseThrow(() -> new ResourceNotFoundException(partyId));
+
+        associate.setParty(party);
+
+        return MessageResponseDTO.builder()
+                .message(String.format("Associate with id %s was linked to the party with id %s", associate.getId(), party.getId()))
+                .build();
+    }
+
+    @Override
+    public MessageResponseDTO removeParty(Long associateId, Long partyId) {
+        Associate associate = this.associateRepository.findById(associateId)
+                .orElseThrow(() -> new ResourceNotFoundException(associateId));
+
+        Party party = this.partyRepository.findById(partyId)
+                .orElseThrow(() -> new ResourceNotFoundException(partyId));
+
+        associate.setParty(null);
+        this.associateRepository.save(associate);
+
+        return MessageResponseDTO.builder()
+                .message(String.format("Party with id %s was removed from associate with id %s", party.getId(), associate.getId()))
+                .build();
     }
 }

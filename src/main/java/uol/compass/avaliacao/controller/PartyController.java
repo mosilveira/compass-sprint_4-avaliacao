@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import uol.compass.avaliacao.dto.request.PartyFormDTO;
+import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.dto.response.PartyDTO;
 import uol.compass.avaliacao.enums.Ideology;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/partidos")
 public class PartyController {
+
     private PartyServiceImpl partyService;
 
     @Autowired
@@ -40,6 +42,11 @@ public class PartyController {
         return this.partyService.findById(id);
     }
 
+    @GetMapping("/{id}/associados")
+    public List<AssociateDTO> findByParty(@PathVariable Long id) {
+        return this.partyService.findByParty(id);
+    }
+
     @PutMapping("/{id}")
     @Transactional
     public MessageResponseDTO update(@PathVariable Long id, @RequestBody @Valid PartyFormDTO partyFormDTO) {
@@ -47,6 +54,7 @@ public class PartyController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         this.partyService.delete(id);

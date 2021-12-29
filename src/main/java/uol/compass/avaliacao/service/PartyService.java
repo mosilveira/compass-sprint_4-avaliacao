@@ -19,4 +19,6 @@ public interface PartyService {
     MessageResponseDTO update(Long id, PartyFormDTO partyFormDTO);
 
     void delete(Long id);
+
+    List<AssociateDTO> findByParty(Long id);
 }
