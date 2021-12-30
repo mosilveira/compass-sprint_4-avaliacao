@@ -1,10 +1,11 @@
 package uol.compass.avaliacao.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uol.compass.avaliacao.dto.request.LinkFormDTO;
 import uol.compass.avaliacao.dto.request.AssociateFormDTO;
+import uol.compass.avaliacao.dto.request.LinkFormDTO;
 import uol.compass.avaliacao.dto.response.AssociateDTO;
 import uol.compass.avaliacao.dto.response.MessageResponseDTO;
 import uol.compass.avaliacao.entity.Associate;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AssociateServiceImpl implements AssociateService {
 
     private AssociateRepository associateRepository;
@@ -27,14 +29,6 @@ public class AssociateServiceImpl implements AssociateService {
     private PartyRepository partyRepository;
 
     private ModelMapper modelMapper;
-
-    @Autowired
-    public AssociateServiceImpl(AssociateRepository associateRepository,
-                                PartyRepository partyRepository, ModelMapper modelMapper) {
-        this.associateRepository = associateRepository;
-        this.partyRepository = partyRepository;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public MessageResponseDTO create(AssociateFormDTO associateFormDTO) {
